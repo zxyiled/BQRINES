@@ -1,0 +1,52 @@
+# .gitattributes for BQRINES
+# Normalize text files and avoid accidental CRLF/LF churn across platforms
+
+# Auto-detect text files and normalize them
+* text=auto
+
+# Force LF for common project text files
+*.sh      text eol=lf
+*.java    text eol=lf
+*.gradle  text eol=lf
+*.properties text eol=lf
+*.yml     text eol=lf
+*.yaml    text eol=lf
+*.md      text eol=lf
+*.txt     text eol=lf
+*.xml     text eol=lf
+*.html    text eol=lf
+*.css     text eol=lf
+*.js      text eol=lf
+
+# Windows batch files should keep CRLF so they run on Windows
+*.bat     text eol=crlf
+
+# Treat common binary assets as binary (no EOL normalization, no diffs)
+*.jar     binary
+*.war     binary
+*.ear     binary
+*.class   binary
+*.so      binary
+*.dll     binary
+*.png     binary
+*.jpg     binary
+*.jpeg    binary
+*.gif     binary
+*.ico     binary
+*.pdf     binary
+
+# Build and generated output: do not attempt to treat as text or merge
+/build/** -text -merge -diff
+/out/**   -text -merge -diff
+
+# Gradle wrapper JAR is binary and should be excluded from archives
+gradle/wrapper/gradle-wrapper.jar binary export-ignore
+
+# Lockfiles are often generated; prefer ours on merge to avoid manual conflicts
+*.lock merge=ours
+
+# Keep environment files as text with LF (if you prefer exact bytes, remove this)
+.env text eol=lf
+
+# Ensure this file is normalized
+.gitattributes text=auto eol=lf
