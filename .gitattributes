@@ -1,4 +1,4 @@
-# .gitattributes for BQRINES
+# .gitattributes for BQRINES.
 # Normalize text files and avoid accidental CRLF/LF churn across platforms
 
 # Auto-detect text files and normalize them
