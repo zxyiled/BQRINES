@@ -1,15 +1,38 @@
 plugins {
     id 'java'
+    id 'org.springframework.boot' version '3.3.0'
+    id 'io.spring.dependency-management' version '1.1.5'
 }
 
 group = 'org'
 version = '1.0-SNAPSHOT'
+description = 'BQRINES'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
+    // Spring Boot MVC + Thymeleaf (server-side rendering, no REST)
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+    // Spring Security + Thymeleaf integration (sec:authorize in templates)
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+
+    // Spring Data JPA + PostgreSQL database
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    runtimeOnly 'org.postgresql:postgresql'
+
+    // Lombok — reduces boilerplate (@Getter, @Setter, @NoArgsConstructor)
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // Spring Boot DevTools — auto-restart on file changes during development
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    // Testing 
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
