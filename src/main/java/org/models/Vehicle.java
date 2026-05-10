@@ -7,7 +7,7 @@ public class Vehicle {
     private String model;
     private Integer year;
     private Double price;
-    private Integer sock;
+    private Integer stock;
     private boolean active = true;
     
 }

@@ -2,7 +2,7 @@ package org.models.enums;
 
 public enum Rol {
     
-    MANAGER,
-    COMERCIAL_ADVISOR,
-    TECHNICAL_SERVICE
+    GERENTE,
+    ASESOR_COMERCIAL,
+    SERVICIO_TECNICO
 }
