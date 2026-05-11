@@ -1,4 +1,8 @@
 package org.models.enums;
 
-public class Rol {
+public enum Rol {
+    
+    GERENTE,
+    ASESOR_COMERCIAL,
+    SERVICIO_TECNICO
 }
