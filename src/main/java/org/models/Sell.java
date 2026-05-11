@@ -6,12 +6,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Column;
-import jakarta.persistence.CreationTimestamp;
+import jakarta.persistence.PrePersist;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
-
 
 @Entity
 @Table(name = "sells")
@@ -24,7 +23,6 @@ public class Sell {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @CreationTimestamp
     @Column(nullable = false, updatable = false)
     private LocalDateTime date;
 
@@ -53,4 +51,9 @@ public class Sell {
     // Actor who registered the sale (email of the user)
     @Column(nullable = false, length = 150, updatable = false)
     private String registeredBy;
+
+    @PrePersist
+    private void prePersist() {
+        this.date = LocalDateTime.now();
+    }
 }
