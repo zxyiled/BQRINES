@@ -1,6 +1,6 @@
 package org.services;
 
-import org.exception.StockInsuficienteException;
+import org.exception.InsufficientStockException;
 import org.models.Spare;
 import org.models.Vehicle;
 import org.repositories.SpareRepository;
@@ -65,7 +65,7 @@ public class InventoryService {
     public void discountVehicleStock(Long id, int quantity) {
         Vehicle vehicle = findVehicleById(id);
         if (vehicle.getStock() < quantity) {
-            throw new StockInsuficienteException(
+            throw new InsufficientStockException(
                     "Insufficient stock for vehicle: " + vehicle.getBrand() + " " + vehicle.getModel()
             );
         }
@@ -116,7 +116,7 @@ public class InventoryService {
     public void discountSpareStock(Long id, int quantity) {
         Spare spare = findSpareById(id);
         if (spare.getStock() < quantity) {
-            throw new StockInsuficienteException(
+            throw new InsufficientStockException(
                     "Insufficient stock for spare part: " + spare.getName()
             );
         }
