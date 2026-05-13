@@ -10,8 +10,8 @@ import jakarta.servlet.http.HttpServletRequest;
 public class GlobalExceptionHandler {
 
     // Handles insufficient stock during a sale — redirects back with an error message
-    @ExceptionHandler(StockInsuficienteException.class)
-    public String handleStockInsuficiente(StockInsuficienteException ex,
+    @ExceptionHandler(InsufficientStockException.class)
+    public String handleInsufficientStock(InsufficientStockException ex,
                                           RedirectAttributes flash,
                                           HttpServletRequest request) {
         flash.addFlashAttribute("error", ex.getMessage());

@@ -1,8 +1,8 @@
 package org.exception;
 
-public class StockInsuficienteException extends RuntimeException {
+public class InsufficientStockException extends RuntimeException {
 
-    public StockInsuficienteException(String message) {
+    public InsufficientStockException(String message) {
         super(message);
     }
 }
