@@ -27,7 +27,7 @@ public class Vehicle {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 20)
+    @Column(nullable = false, unique = true, length = 20)
     private String placa;
 
     @Column(nullable = false, length = 100)

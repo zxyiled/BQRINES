@@ -24,6 +24,9 @@ public class SellService {
         double total = 0;
         for (SellItem item : sell.getItems()) {
             if ("vehicle".equalsIgnoreCase(item.getProductType())) {
+                if (item.getQuantity() != 1) {
+                    throw new RuntimeException("Vehicles must be sold individually.");
+                }
                 inventoryService.discountVehicleStock(item.getProductId(), item.getQuantity());
             } else if ("spares".equalsIgnoreCase(item.getProductType())) {
                 inventoryService.discountSpareStock(item.getProductId(), item.getQuantity());

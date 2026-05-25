@@ -53,6 +53,8 @@ public class InventoryService {
 
     @Transactional
     public Vehicle saveVehicle(Vehicle vehicle, String performedBy) {
+        vehicle.setPlaca(vehicle.getPlaca().toUpperCase().trim());
+        vehicle.setStock(1);
         Vehicle saved = vehicleRepository.save(vehicle);
         String details = "Placa: " + nvl(saved.getPlaca())
                 + " | Marca: " + saved.getBrand()
@@ -68,6 +70,8 @@ public class InventoryService {
     @Transactional
     public Vehicle updateVehicle(Long id, Vehicle data, String modifiedBy) {
         Vehicle existing = findVehicleById(id);
+        data.setPlaca(data.getPlaca().toUpperCase().trim());
+        data.setStock(data.getStock() != null && data.getStock() <= 0 ? 0 : 1);
 
         List<String> changes = new ArrayList<>();
         if (!eq(existing.getPlaca(), data.getPlaca()))

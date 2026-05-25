@@ -37,16 +37,19 @@ public class InventoryController {
     @PostMapping("/vehicles/save")
     @PreAuthorize("hasRole('GERENTE')")
     public String saveVehicle(@ModelAttribute Vehicle vehicle, Authentication auth, RedirectAttributes flash) {
-        if (vehicle.getPlaca() != null && !vehicle.getPlaca().isBlank()) {
-            var existing = inventoryService.findVehicleByPlaca(vehicle.getPlaca().toUpperCase().trim());
-            if (existing.isPresent()) {
-                flash.addFlashAttribute("warning",
-                        "Ya existe un vehículo con la placa '" + vehicle.getPlaca().toUpperCase().trim() +
-                        "'. Actualízalo desde aquí.");
-                return "redirect:/inventory/vehicles/edit/" + existing.get().getId();
-            }
-            vehicle.setPlaca(vehicle.getPlaca().toUpperCase().trim());
+        if (vehicle.getPlaca() == null || vehicle.getPlaca().isBlank()) {
+            flash.addFlashAttribute("error", "La placa es obligatoria para registrar un vehículo.");
+            return "redirect:/inventory/vehicles/new";
         }
+        vehicle.setPlaca(vehicle.getPlaca().toUpperCase().trim());
+        var existing = inventoryService.findVehicleByPlaca(vehicle.getPlaca());
+        if (existing.isPresent()) {
+            flash.addFlashAttribute("warning",
+                    "Ya existe un vehículo con la placa '" + vehicle.getPlaca() +
+                    "'. Actualízalo desde aquí.");
+            return "redirect:/inventory/vehicles/edit/" + existing.get().getId();
+        }
+        vehicle.setStock(1);
         inventoryService.saveVehicle(vehicle, auth.getName());
         flash.addFlashAttribute("success", "Vehículo registrado exitosamente.");
         return "redirect:/inventory/vehicles";
@@ -63,6 +66,17 @@ public class InventoryController {
     @PreAuthorize("hasRole('GERENTE')")
     public String updateVehicle(@PathVariable Long id, @ModelAttribute Vehicle vehicle,
                                 Authentication auth, RedirectAttributes flash) {
+        if (vehicle.getPlaca() == null || vehicle.getPlaca().isBlank()) {
+            flash.addFlashAttribute("error", "La placa es obligatoria para actualizar un vehículo.");
+            return "redirect:/inventory/vehicles/edit/" + id;
+        }
+        vehicle.setPlaca(vehicle.getPlaca().toUpperCase().trim());
+        var existing = inventoryService.findVehicleByPlaca(vehicle.getPlaca());
+        if (existing.isPresent() && !existing.get().getId().equals(id)) {
+            flash.addFlashAttribute("error", "Ya existe otro vehículo con la placa '" + vehicle.getPlaca() + "'.");
+            return "redirect:/inventory/vehicles/edit/" + id;
+        }
+        vehicle.setStock(vehicle.getStock() != null && vehicle.getStock() <= 0 ? 0 : 1);
         inventoryService.updateVehicle(id, vehicle, auth.getName());
         flash.addFlashAttribute("success", "Vehículo actualizado exitosamente.");
         return "redirect:/inventory/vehicles";

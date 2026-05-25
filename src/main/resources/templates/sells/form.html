@@ -198,6 +198,8 @@ function toggleProduct() {
     document.getElementById('unitaryPrice').value = '';
     document.getElementById('qty').removeAttribute('max');
     document.getElementById('qty').value = 1;
+    document.getElementById('qty').readOnly = type === 'vehicle';
+    if (type === 'vehicle') document.getElementById('qty').max = 1;
 }
 
 function syncProduct(sel) {
@@ -223,6 +225,9 @@ function addToCart() {
     if (!opt || !opt.value)           { alert('Selecciona un producto.'); return; }
     if (!price || price <= 0)         { alert('El precio no es válido.'); return; }
     if (!qty   || qty <= 0)           { alert('La cantidad no es válida.'); return; }
+    if (type === 'vehicle' && qty !== 1) {
+        alert('Los vehículos se venden individualmente. La cantidad debe ser 1.'); return;
+    }
     if (opt.dataset.stock && qty > parseInt(opt.dataset.stock)) {
         alert('La cantidad supera el stock disponible (' + opt.dataset.stock + ' uds.).'); return;
     }
