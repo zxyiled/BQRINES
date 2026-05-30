@@ -1,5 +1,22 @@
 # BQRINES
 
+![Java 17+](https://img.shields.io/badge/Java-17%2B-informational?logo=openjdk&logoColor=white)
+![Spring Boot 3.3](https://img.shields.io/badge/Spring%20Boot-3.3-6DB33F?logo=springboot&logoColor=white)
+![Spring MVC](https://img.shields.io/badge/Spring%20MVC-6DB33F?logo=spring&logoColor=white)
+![Spring Security](https://img.shields.io/badge/Spring%20Security-6DB33F?logo=springsecurity&logoColor=white)
+![Spring Data JPA](https://img.shields.io/badge/Spring%20Data%20JPA-6DB33F?logo=spring&logoColor=white)
+![Hibernate](https://img.shields.io/badge/Hibernate-59666C?logo=hibernate&logoColor=white)
+![Thymeleaf](https://img.shields.io/badge/Thymeleaf-005F0F?logo=thymeleaf&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?logo=postgresql&logoColor=white)
+![Bootstrap 5](https://img.shields.io/badge/Bootstrap%205-7952B3?logo=bootstrap&logoColor=white)
+![Font Awesome](https://img.shields.io/badge/Font%20Awesome-528DD7?logo=fontawesome&logoColor=white)
+![Gradle](https://img.shields.io/badge/Gradle-02303A?logo=gradle&logoColor=white)
+![Lombok](https://img.shields.io/badge/Lombok-BC4521?logo=lombok&logoColor=white)
+![OpenPDF](https://img.shields.io/badge/OpenPDF-FF6C37?logo=adobeacrobatreader&logoColor=white)
+![Apache POI](https://img.shields.io/badge/Apache%20POI-D22128?logo=apache&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)
+![JUnit 5](https://img.shields.io/badge/JUnit%205-25A162?logo=junit5&logoColor=white)
+
 BQRINES is a Spring Boot web application for managing vehicle and spare-part inventory, sales, users, dashboards, and reports.
 
 The application uses server-side rendering with Thymeleaf, Spring Security for authentication and role-based access, Spring Data JPA for persistence, and PostgreSQL as the database.
